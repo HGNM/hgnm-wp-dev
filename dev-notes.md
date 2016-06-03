@@ -1,6 +1,7 @@
 # Dev Notes
 
-Notes on getting `hgnm-dev` up and running with the HGNM theme and website. Points 2 + 3 below should be automatable.
+How to get set up with a development environment to allow work on the `hgnm-2014` theme.
+
 
 ## 1. Install prerequisites
 
