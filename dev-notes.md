@@ -5,9 +5,14 @@ How to get set up with a development environment to allow work on the `hgnm-2014
 
 ## 1. Install prerequisites
 
-To get the dev environment up and running we need [wget](https://www.gnu.org/software/wget/), [WP-CLI](https://wp-cli.org/), [Virtual Box](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/), and the [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin.
+The following command line tools are required:
+- [wget](https://www.gnu.org/software/wget/)
+- [WP-CLI](https://wp-cli.org/)
+- [Virtual Box](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
+- [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin
 
-Simplest is to use [Homebrew](http://brew.sh/) (you can skip any dependencies already installed):
+You can install all of these with [Homebrew](http://brew.sh/), plus Vagrant’s package manager:
 
 ```sh
 brew update # make sure we have an up-to-date formula list
