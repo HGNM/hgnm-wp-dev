@@ -51,7 +51,7 @@ fi
 
 # Get required proprietary fonts for theme
 wget -O df.zip "http://chrisswithinbank.net/wp-content/uploads/2016/06/1407-HRGQJV.zip"
-if [ -a "df.zip" ]; then
+if [[ -f "df.zip" ]]; then
   unzip df.zip -d wordpress/wp-content/themes/hgnm-2014/font/
   rm df.zip
 else
@@ -68,7 +68,7 @@ fi
 wp ssh --host=v post delete 1 --force # Delete ‘Hello world!’ post
 wp ssh --host=v post delete 2 --force # Delete sample page
 # Import exported XML from hgnm.org
-if [ -a "hgnm-export.xml" ]; then
+if [[ -f "hgnm-export.xml" ]]; then
   wp ssh --host=v import hgnm-export.xml --authors=create
 else
   echo "Can’t find file: hgnm-export.xml. Fatal error…"
