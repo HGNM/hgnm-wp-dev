@@ -32,7 +32,9 @@ Do this somewhere sensible, such as your `Sites` folder or wherever you like to 
 git clone git@github.com:HGNM/hgnm-wp-dev.git; cd hgnm-wp-dev; vagrant up
 ```
 
-On first `vagrant up`, downloading and installing dependencies will take some time (Ruby is slow…). Sit back and wait! Any password requests at this point require OS admin passwords.
+Downloading and installing dependencies will take some time. Go make a cup of tea or reply to some e-mails.
+
+Any password prompts at this point require OS X admin passwords.
 
 
 ## 3. Configure WordPress installation
