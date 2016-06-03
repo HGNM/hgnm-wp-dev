@@ -22,9 +22,7 @@ vagrant plugin install vagrant-hostsupdater
 Do this somewhere sensible, such as your `Sites` folder or wherever you like to keep your development repos.
 
 ```sh
-git clone git@github.com:HGNM/vagrantpress.git hgnm-dev
-cd hgnm-dev
-vagrant up
+git clone git@github.com:HGNM/hgnm-wp-dev.git; cd hgnm-wp-dev; vagrant up
 ```
 
 On first `vagrant up`, downloading and installing dependencies will take some time (Ruby is slow…). Sit back and wait! Any password requests at this point require OS admin passwords.
