@@ -1,0 +1,14 @@
+path: wordpress
+url: hgnm.dev
+user: admin
+
+require:
+  - wp-cli-ssh.php
+ssh:
+  vagrant:
+    # Note the following command is needed because passing the -t/-T (%pseudotty%)
+    # argument doesn't seem to be recognized by vagrant: vagrant ssh -c %cmd% -- %pseudotty%
+    cmd: vagrant ssh-config > /tmp/vagrant_ssh_config && ssh -q %pseudotty% -F /tmp/vagrant_ssh_config default %cmd%
+    url: hgnm.dev
+    # Location on the vagrant machine where this WordPress install is located
+    path: /vagrant
