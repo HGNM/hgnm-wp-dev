@@ -33,6 +33,12 @@ At this point a default WP install is available at <http://hgnm.dev/>. Admin cre
 
 ## 3. Configure WordPress installation
 
+This whole section should now work by simply running:
+
+```sh
+./bootstrap.sh
+```
+
 ### Install & activate required plugins
 
 ```sh
