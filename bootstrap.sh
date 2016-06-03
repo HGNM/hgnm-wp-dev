@@ -39,6 +39,24 @@ print_color "Installing WordPress Importer plugin..."
 wp ssh --host=v plugin install wordpress-importer --activate
 
 
+#############################
+# POPULATE DATABASE CONTENT #
+#############################
+
+# Clean default generated content
+print_color "Deleting generic WordPress content..."
+wp ssh --host=v post delete 1 --force # Delete ‘Hello world!’ post
+wp ssh --host=v post delete 2 --force # Delete sample page
+# Import exported XML from hgnm.org
+print_color "Importing hgnm.org content..."
+if [[ -f "hgnm-export.xml" ]]; then
+  wp ssh --host=v import hgnm-export.xml --authors=create
+else
+  echo "Can’t find file: hgnm-export.xml. Fatal error…"
+  exit 1
+fi
+
+
 ###################################
 # THEME INSTALLATION & ACTIVATION #
 ###################################
@@ -61,23 +79,5 @@ if [[ -f "df.zip" ]]; then
   rm df.zip
 else
   echo "Can’t find file: df.zip. Fatal error…"
-  exit 1
-fi
-
-
-#############################
-# POPULATE DATABASE CONTENT #
-#############################
-
-# Clean default generated content
-print_color "Deleting generic WordPress content..."
-wp ssh --host=v post delete 1 --force # Delete ‘Hello world!’ post
-wp ssh --host=v post delete 2 --force # Delete sample page
-# Import exported XML from hgnm.org
-print_color "Importing hgnm.org content..."
-if [[ -f "hgnm-export.xml" ]]; then
-  wp ssh --host=v import hgnm-export.xml --authors=create
-else
-  echo "Can’t find file: hgnm-export.xml. Fatal error…"
   exit 1
 fi
