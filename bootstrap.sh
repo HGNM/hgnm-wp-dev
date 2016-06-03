@@ -21,7 +21,7 @@ fi
 
 # Advanced Custom Fields Pro
 wget -O wordpress/wp-content/plugins/acf-pro.zip "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NjQzMTJ8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTA5LTE2IDAzOjE4OjEy"
-if [ -f "wordpress/wp-content/plugins/acf-pro.zip"]; then
+if [[ -f "wordpress/wp-content/plugins/acf-pro.zip" ]]; then
   wp ssh --host=v plugin install wordpress/wp-content/plugins/acf-pro.zip --activate
   rm wordpress/wp-content/plugins/acf-pro.zip
 else
@@ -51,7 +51,7 @@ fi
 
 # Get required proprietary fonts for theme
 wget -O df.zip "http://chrisswithinbank.net/wp-content/uploads/2016/06/1407-HRGQJV.zip"
-if [ -f "df.zip" ]; then
+if [ -a "df.zip" ]; then
   unzip df.zip -d wordpress/wp-content/themes/hgnm-2014/font/
   rm df.zip
 else
@@ -68,7 +68,7 @@ fi
 wp ssh --host=v post delete 1 --force # Delete ‘Hello world!’ post
 wp ssh --host=v post delete 2 --force # Delete sample page
 # Import exported XML from hgnm.org
-if [ -f "hgnm-export.xml" ]; then
+if [ -a "hgnm-export.xml" ]; then
   wp ssh --host=v import hgnm-export.xml --authors=create
 else
   echo "Can’t find file: hgnm-export.xml. Fatal error…"
