@@ -61,12 +61,14 @@ Admin credentials are `admin` & `vagrant`.
 vagrant halt
 ```
 
-### Clean up and prepare for a fresh install
+### Restart the virtual machine
 
-***N.B. This gets rid of everything!!!***
+```sh
+vagrant up
+```
+
+### Clean up and prepare for a fresh install
 
 ```sh
 vagrant destroy
-cd ../
-rm hgnm-dev
 ```
