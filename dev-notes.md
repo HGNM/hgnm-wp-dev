@@ -18,6 +18,7 @@ brew cask install vagrant
 vagrant plugin install vagrant-hostsupdater
 ```
 
+
 ## 2. Clone dev environment
 
 Do this somewhere sensible, such as your `Sites` folder or wherever you like to keep your development repos.
@@ -27,6 +28,7 @@ git clone git@github.com:HGNM/hgnm-wp-dev.git; cd hgnm-wp-dev; vagrant up
 ```
 
 On first `vagrant up`, downloading and installing dependencies will take some time (Ruby is slow…). Sit back and wait! Any password requests at this point require OS admin passwords.
+
 
 ## 3. Configure WordPress installation
 
