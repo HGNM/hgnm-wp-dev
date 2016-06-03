@@ -1,6 +1,6 @@
-# Dev Notes
+# README
 
-How to get set up with a development environment to allow work on the `hgnm-2014` theme.
+This is a WordPress development environment, forked from [`VagrantPress`](https://github.com/vagrantpress/vagrantpress), that will allow you to get set up with a local WordPress install and work on the [`hgnm-2014`](https://github.com/HGNM/hgnm-2014) theme.
 
 
 ## 1. Install prerequisites
