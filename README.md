@@ -1,70 +1,74 @@
-# VagrantPress
+# Dev Notes
 
-*VagrantPress* is a packaged development environment for developing WordPress themes and modules.  
-I initially created this project to aid in developing child modules for a WordPress blog.
+How to get set up with a development environment to allow work on the `hgnm-2014` theme.
 
-# What's Installed
 
-+ Ubuntu Trusty (14.04)
-+ Wordpress 4.0
-+ Mysql
-+ Php
-+ Phpmyadmin
-+ Subversion
-+ Git
-+ Composer
-+ ~~PEAR~~
-+ Xdebug
-+ PHPUnit - **installed via composer*
-+ phploc - **installed via composer*
-+ phpcpd - **installed via composer*
-+ phpdcd - **installed via composer*
-+ phpcs - **installed via composer*
-+ phpdepend - **installed via composer*
-+ phpmd - **installed via composer*
-+ PHP_CodeBrowser - **installed via composer*
-+ WordPress sniffs for phpcs
-+ WordPress Unit Tests - **installed via composer*
+## 1. Install prerequisites
 
-**PEAR removed as support has reached end of life, see [End of Life for PEAR Installation Method](https://github.com/sebastianbergmann/phpunit/wiki/End-of-Life-for-PEAR-Installation-Method)*
+The following command line tools are required:
+- [wget](https://www.gnu.org/software/wget/)
+- [WP-CLI](https://wp-cli.org/)
+- [Virtual Box](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
+- [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin
 
-# Prerequisites
+You can install all of these with [Homebrew](http://brew.sh/), plus Vagrant’s package manager:
 
-+ [Vagrant](http://www.vagrantup.com/downloads.html)
-+ [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
-+ [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+```sh
+brew update # make sure we have an up-to-date formula list
+brew install wget
+brew install homebrew/php/wp-cli
+brew cask install virtualbox
+brew cask install vagrant
+vagrant plugin install vagrant-hostsupdater
+```
 
-## Getting Started
 
-This is a fairly simple project to get up and running.  
-The procedure for starting up a working WordPress is as follows:
+## 2. Clone dev environment
 
-1. Clone the project.  (There’s only master branch.)
-2. Run `vagrant plugin install vagrant-hostsupdater` from command line
-2. Run the command `vagrant up` from the directory
-3. Open your browser to http://hgnm.dev
+Do this somewhere sensible, such as your `Sites` folder or wherever you like to keep your development repos.
 
-## Working with the environment
+```sh
+git clone git@github.com:HGNM/hgnm-wp-dev.git; cd hgnm-wp-dev; vagrant up
+```
 
-To log in to the local Wordpress installation:
+Downloading and installing dependencies will take some time. Go make a cup of tea or reply to some e-mails.
 
-`http://hgnm.dev/wp-admin/` the username is `admin`, the password is `vagrant`.
+Any password prompts at this point require OS X admin passwords.
 
-You can access phpMyAdmin:
 
-`http://hgnm.dev/phpmyadmin/` with username `wordpress`, password `wordpress`.
+## 3. Configure WordPress installation
 
-## A Few Details
+```sh
+./bootstrap.sh
+```
 
-* If you're needing a password (for anything - including mysql, it should be `vagrant`)
+This bootstrap script will install & activate required WordPress plugins, populate WordPress with real content from [hgnm.org](http://hgnm.org), and install & activate the `hgnm-2014` WordPress theme, including downloading fonts stored separately.
 
-## Common Troubleshooting Tips
 
- * Have a look at the [troubleshooting guide][ts]
+## 4. Enjoy!
 
-## Getting Help
+At this point a default WP install is available at <http://hgnm.dev/>.
 
-Feel free to file an issue, create a pull request, or contact me at [my website][chadthompson].
+Admin credentials are `admin` & `vagrant`.
 
-[chadthompson]: http://chadthompson.me
-[ts]: https://github.com/vagrantpress/vagrantpress/wiki
+
+## Useful commands
+
+### Turn off the virtual machine running WP
+
+```sh
+vagrant halt
+```
+
+### Restart the virtual machine
+
+```sh
+vagrant up
+```
+
+### Clean up and prepare for a fresh install
+
+```sh
+vagrant destroy
+```
