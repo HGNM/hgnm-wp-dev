@@ -52,6 +52,8 @@ At this point a default WP install is available at <http://hgnm.dev/>.
 
 Admin credentials are `admin` & `vagrant`.
 
+Head over to [the `hgnm-2014` repo](https://github.com/HGNM/hgnm-2014#set-up) for notes on how to develop the theme.
+
 
 ## Useful commands
 
