@@ -1,4 +1,4 @@
-# README
+# hgnm-wp-dev
 
 This is a WordPress development environment, forked from [`VagrantPress`](https://github.com/vagrantpress/vagrantpress), that will allow you to get set up with a local WordPress install and work on the [`hgnm-2014`](https://github.com/HGNM/hgnm-2014) theme.
 
