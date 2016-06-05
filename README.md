@@ -57,20 +57,41 @@ Head over to [the `hgnm-2014` repo](https://github.com/HGNM/hgnm-2014#set-up) fo
 
 ## Useful commands
 
-### Turn off the virtual machine running WP
+### Virtal Machine (Vagrant)
+
+#### Turn off the virtual machine running WP
 
 ```sh
 vagrant halt
 ```
 
-### Restart the virtual machine
+#### Restart the virtual machine
 
 ```sh
 vagrant up
 ```
 
-### Clean up and prepare for a fresh install
+#### Clean up and prepare for a fresh install
 
 ```sh
 vagrant destroy
 ```
+
+### WordPress CLI
+
+You can manipulate the WordPress install from the command line using [`wp-cli`](https://wp-cli.org/) and `wp-cli-ssh`, which is bundled with this repo.
+
+For example:
+
+```sh
+# Install & activate Akismet
+wp ssh --host=v plugin install akismet --activate
+# Delete all existing site content, including media uploads
+wp ssh --host=v site empty --uploads
+# Import site content from XML, creating authors to match imported data
+wp ssh --host=v import hgnm-export.xml --authors=create
+```
+
+Using `wp ssh --host=v` rather than simply `wp` to prefix a command allows you to SSH into the virtual machine’s server, using the host configuration stored in `wp-cli.yml`.
+
+Consult the `wp-cli` documentation for [a full list of available commands](https://wp-cli.org/commands/).
