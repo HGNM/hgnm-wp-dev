@@ -57,7 +57,7 @@ Head over to [the `hgnm-2014` repo](https://github.com/HGNM/hgnm-2014#set-up) fo
 
 ## Useful commands
 
-### Virtal Machine (Vagrant)
+### Virtual Machine (Vagrant)
 
 #### Turn off the virtual machine running WP
 
