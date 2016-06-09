@@ -14,6 +14,26 @@ if [ ! -d "wordpress" ]; then
   exit 1
 fi
 
+# Parse command line option flags
+CLONE_STYLE="ssh"
+while [[ $# > 0 ]]; do
+  key="$1"
+  case $key in
+    -h|--https)
+    CLONE_STYLE="https"
+    shift # past argument
+    ;;
+    -s|--ssh)
+    CLONE_STYLE="ssh"
+    shift # past argument
+    ;;
+    *)
+    echo "Unrecognised option $key. Try --https or --ssh."
+    ;;
+  esac
+  shift # past argument or value
+done
+
 
 ####################################
 # PLUGIN INSTALLATION & ACTIVATION #
@@ -43,9 +63,18 @@ wp ssh --host=v plugin install wordpress-importer --activate
 # THEME INSTALLATION & ACTIVATION #
 ###################################
 
+# Set remote URL
+if [[ $CLONE_STYLE == "https" ]]; then
+  THEME_REMOTE_URL="https://github.com/HGNM/hgnm-2014.git"
+elif [[ $CLONE_STYLE == "ssh" ]]; then
+  THEME_REMOTE_URL="git@github.com:HGNM/hgnm-2014.git"
+else
+  THEME_REMOTE_URL="git@github.com:HGNM/hgnm-2014.git"
+fi
+
 # Install & activate hgnm-2014 theme
 print_color "Installing hgnm-2014 WordPress theme..."
-git clone git@github.com:HGNM/hgnm-2014.git wordpress/wp-content/themes/hgnm-2014
+git clone $THEME_REMOTE_URL wordpress/wp-content/themes/hgnm-2014
 if [ -d "wordpress/wp-content/themes/hgnm-2014" ]; then
   wp ssh --host=v theme activate hgnm-2014
 else
