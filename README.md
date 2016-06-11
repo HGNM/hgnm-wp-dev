@@ -43,7 +43,7 @@ Any password prompts at this point require OS X admin passwords.
 ./bootstrap.sh
 ```
 
-This bootstrap script will install & activate required WordPress plugins, populate WordPress with real content from [hgnm.org](http://hgnm.org), and install & activate the `hgnm-2014` WordPress theme, including downloading fonts stored separately.
+This bootstrap script will install & activate required WordPress plugins, populate WordPress with real content from [hgnm.org](http://hgnm.org), and install & activate the `hgnm-2014` WordPress theme as a development repository.
 
 If you want to clone `hgnm-2014` over HTTPS rather than SSH, use the optional flag:
 
