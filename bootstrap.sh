@@ -82,17 +82,6 @@ else
   exit 1
 fi
 
-# Get required proprietary fonts for theme
-print_color "Downloading required font files..."
-wget -O df.zip "http://chrisswithinbank.net/wp-content/uploads/2016/06/1407-HRGQJV.zip"
-if [[ -f "df.zip" ]]; then
-  unzip df.zip -d wordpress/wp-content/themes/hgnm-2014/font/
-  rm df.zip
-else
-  echo "Can’t find file: df.zip. Fatal error…"
-  exit 1
-fi
-
 
 #############################
 # POPULATE DATABASE CONTENT #
