@@ -50,10 +50,6 @@ else
   exit 1
 fi
 
-# ACF Date/Time Picker Field Plugin
-print_color "Installing ACF Date/Time Picker Field plugin..."
-wp ssh --host=v plugin install https://github.com/soderlind/acf-field-date-time-picker/archive/master.zip --activate
-
 # WordPress Importer
 print_color "Installing WordPress Importer plugin..."
 wp ssh --host=v plugin install wordpress-importer --activate
