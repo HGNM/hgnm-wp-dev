@@ -1,103 +1,46 @@
 # hgnm-wp-dev
 
-This is a WordPress development environment, forked from [`VagrantPress`](https://github.com/vagrantpress/vagrantpress), that will allow you to get set up with a local WordPress install and work on the [`hgnm-2014`](https://github.com/HGNM/hgnm-2014) theme.
+This is a bootstrapping script for use with [Local][e6c53d4d] to help you get set up with a local WordPress install and work on the [`hgnm-2014`](https://github.com/HGNM/hgnm-2014) theme.
+
+  [e6c53d4d]: https://local.getflywheel.com/ "Local"
 
 
-## 1. Install prerequisites
+## 1. Install & set-up Local
 
-The following command line tools are required:
-- [wget](https://www.gnu.org/software/wget/)
-- [WP-CLI](https://wp-cli.org/)
-- [Virtual Box](https://www.virtualbox.org/)
-- [Vagrant](https://www.vagrantup.com/)
-- [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin
+We are going to use [Local by Flywheel][e6c53d4d], a free desktop app that allows you to run local WordPress instances.
 
-You can install all of these with [Homebrew](http://brew.sh/), plus Vagrant’s package manager:
+  1. **[Download Local for macOS →](https://local-by-flywheel-flywheel.netdna-ssl.com/releases/2-2-4/local-by-flywheel-2-2-4-mac.zip)**
 
-```sh
-brew update # make sure we have an up-to-date formula list
-brew install wget
-brew install homebrew/php/wp-cli
-brew cask install virtualbox
-brew cask install vagrant
-vagrant plugin install vagrant-hostsupdater
-```
+  2. Once the download has finished, run the installer and open Local
+  
+  3. Create a new site using the dialog displayed or **File** > **Add New Site** (<kbd>⌘ N</kbd>)
 
+    The settings are not very important, but for the rest of this guide we will assume you enter `hgnm` as the site name
+    
+  4. Click through as Local sets up your site, making a note of the username and password you enter in the “Setup WordPress” panel
 
-## 2. Clone dev environment
+## 2. Configure the site for `hgnm-2014` development
 
-Do this somewhere sensible, such as your `Sites` folder or wherever you like to keep your development repos.
+  1. Right-click on your site in Local and select **Open Site SSH**
 
-```sh
-git clone git@github.com:HGNM/hgnm-wp-dev.git; cd hgnm-wp-dev; vagrant up
-```
+    ![Screenshot of the Local app showing the menu to click on](.github/local-ssh.png)
+    
+  2. A Terminal window will open, run the following commands:
 
-Downloading and installing dependencies will take some time. Go make a cup of tea or reply to some e-mails.
+    ```sh
+    # install Git in Local’s virtual machine
+    apt-get install git
+    # download this repository to the virtual machine
+    git clone https://github.com/HGNM/hgnm-wp-dev.git
+    # run the bootstrapping script
+    ./hgnm-wp-dev/run
+    ```
 
-Any password prompts at this point require OS X admin passwords.
-
-
-## 3. Configure WordPress installation
-
-```sh
-./bootstrap.sh
-```
-
-This bootstrap script will install & activate required WordPress plugins, populate WordPress with real content from [hgnm.org](http://hgnm.org), and install & activate the `hgnm-2014` WordPress theme as a development repository.
-
-If you want to clone `hgnm-2014` over HTTPS rather than SSH, use the optional flag:
-
-```sh
-./bootstrap.sh --https
-```
+The bootstrap script will install & activate required WordPress plugins, populate WordPress with real content from [hgnm.org](http://hgnm.org), and install & activate the `hgnm-2014` WordPress theme as a development repository.
 
 
 ## 4. Enjoy!
 
-At this point a default WP install is available at <http://hgnm.dev/>.
-
-Admin credentials are `admin` & `vagrant`.
+At this point a default WP install is available at <http://hgnm.local/> (unless you chose a different local address in step 1).
 
 Head over to [the `hgnm-2014` repo](https://github.com/HGNM/hgnm-2014#set-up) for notes on how to develop the theme.
-
-
-## Useful commands
-
-### Virtual Machine (Vagrant)
-
-#### Turn off the virtual machine running WP
-
-```sh
-vagrant halt
-```
-
-#### Restart the virtual machine
-
-```sh
-vagrant up
-```
-
-#### Clean up and prepare for a fresh install
-
-```sh
-vagrant destroy
-```
-
-### WordPress CLI
-
-You can manipulate the WordPress install from the command line using [`wp-cli`](https://wp-cli.org/) and `wp-cli-ssh`, which is bundled with this repo.
-
-For example:
-
-```sh
-# Install & activate Akismet
-wp ssh --host=v plugin install akismet --activate
-# Delete all existing site content, including media uploads
-wp ssh --host=v site empty --uploads
-# Import site content from XML, creating authors to match imported data
-wp ssh --host=v import hgnm-export.xml --authors=create
-```
-
-Using `wp ssh --host=v` rather than simply `wp` to prefix a command allows you to SSH into the virtual machine’s server, using the host configuration stored in `wp-cli.yml`.
-
-Consult the `wp-cli` documentation for [a full list of available commands](https://wp-cli.org/commands/).
