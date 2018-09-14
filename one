@@ -1,0 +1,25 @@
+#!/bin/bash
+
+print_color () { tput setab 7; tput setaf 0; echo "$1"; tput sgr0; }
+
+# Check all required CLIs are available
+dependencies=( wget git unzip )
+for dependency in "${dependencies[@]}"; do
+ command -v $dependency >/dev/null 2>&1 || { echo >&2 "‘$dependency’ command is required but it’s not installed. Aborting."; exit 1; }
+done
+
+WP_DIR="app/public"
+
+######################
+# THEME INSTALLATION #
+######################
+
+# Set remote URL
+THEME_REMOTE_URL="https://github.com/HGNM/hgnm-2014.git"
+THEME_LOCAL_DIR="$WP_DIR/wp-content/themes/hgnm-2014"
+
+# Install & activate hgnm-2014 theme
+print_color "Cloning hgnm-2014 WordPress theme..."
+git clone $THEME_REMOTE_URL $THEME_LOCAL_DIR
+
+print_color "Step 1 finished.\nPlease open Local, open site SSH, and run `./hgnm-wp-dev/two`"

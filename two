@@ -3,9 +3,9 @@
 print_color () { tput setab 7; tput setaf 0; echo "$1"; tput sgr0; }
 
 # Check all required CLIs are available
-dependencies=( wget git unzip )
+dependencies=( wget git unzip node )
 for dependency in "${dependencies[@]}"; do
-  command -v $dependency >/dev/null 2>&1 || apt-get install $dependency
+  command -v $dependency >/dev/null 2>&1 || apt-get -y install $dependency
 done
 
 
@@ -20,7 +20,7 @@ WP_DIR="app/public"
 print_color "Installing Advanced Custom Fields Pro plugin..."
 wget -O "$WP_DIR/wp-content/plugins/acf-pro.zip" "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NjQzMTJ8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTA5LTE2IDAzOjE4OjEy"
 if [[ -f "$WP_DIR/wp-content/plugins/acf-pro.zip" ]]; then
-  wp plugin install "$WP_DIR/wp-content/plugins/acf-pro.zip" --activate
+  wp plugin install "$WP_DIR/wp-content/plugins/acf-pro.zip" --activate --allow-root
   rm "$WP_DIR/wp-content/plugins/acf-pro.zip"
 else
   echo "Can’t find file: $WP_DIR/wp-content/plugins/acf-pro.zip. Fatal error…"
@@ -29,22 +29,19 @@ fi
 
 # WordPress Importer
 print_color "Installing WordPress Importer plugin..."
-wp plugin install wordpress-importer --activate
+wp plugin install wordpress-importer --activate --allow-root
 
 
-###################################
-# THEME INSTALLATION & ACTIVATION #
-###################################
+####################
+# THEME ACTIVATION #
+####################
 
-# Set remote URL
-THEME_REMOTE_URL="https://github.com/HGNM/hgnm-2014.git"
 THEME_LOCAL_DIR="$WP_DIR/wp-content/themes/hgnm-2014"
 
 # Install & activate hgnm-2014 theme
-print_color "Installing hgnm-2014 WordPress theme..."
-git clone $THEME_REMOTE_URL $THEME_LOCAL_DIR
+print_color "Activating hgnm-2014 WordPress theme..."
 if [ -d $THEME_LOCAL_DIR ]; then
-  wp theme activate hgnm-2014
+  wp theme activate hgnm-2014 --allow-root
 else
   echo "Can’t find directory: $THEME_LOCAL_DIR. Fatal error…"
   exit 1
@@ -57,13 +54,13 @@ fi
 
 # Clean default generated content
 print_color "Deleting generic WordPress content..."
-wp post delete 1 --force # Delete ‘Hello world!’ post
-wp post delete 2 --force # Delete sample page
+wp post delete 1 --force --allow-root # Delete ‘Hello world!’ post
+wp post delete 2 --force --allow-root # Delete sample page
 # Import exported XML from hgnm.org
 HGNM_CONTENT="$__DIRNAME/hgnm-export.xml"
 print_color "Importing hgnm.org content..."
 if [[ -f $HGNM_CONTENT ]]; then
-  wp import $HGNM_CONTENT --authors=create
+  wp import $HGNM_CONTENT --authors=create --allow-root
 else
   echo "Can’t find file: $HGNM_CONTENT. Fatal error…"
   exit 1
