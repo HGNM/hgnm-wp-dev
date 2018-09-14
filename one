@@ -22,4 +22,5 @@ THEME_LOCAL_DIR="$WP_DIR/wp-content/themes/hgnm-2014"
 print_color "Cloning hgnm-2014 WordPress theme..."
 git clone $THEME_REMOTE_URL $THEME_LOCAL_DIR
 
-print_color "Step 1 finished.\nPlease open Local, open site SSH, and run `./hgnm-wp-dev/two`"
+print_color "Step 1 finished."
+echo "Return to Local, open site SSH, and run ./hgnm-wp-dev/two"
