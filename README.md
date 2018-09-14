@@ -72,4 +72,13 @@ cd ~/Local\ Sites/hgnm/app/public/wp-content/themes/hgnm-2014
 
 Once you have followed the steps above, closing Local will close the local server and opening Local will start it again.
 
-If you would like to use WP-CLI to accomplish some tasks, it is available as `wp` on the virtual machine, which can be opened using **Open Site SSH** as in step 2.4 above.
+### Useful notes
+
+- If you would like to use WP-CLI to accomplish some tasks, it is available as `wp` on the virtual machine, which can be opened using **Open Site SSH** as in step 2.4 above.
+
+- If you want to display PHP debugging messages, you can add the following to `wp-config.php` (found in `~/Local Sites/hgnm/app/public/`):
+
+    ```php
+    /** Enable/disable PHP debugging */
+    define( 'WP_DEBUG', true );
+    ```
