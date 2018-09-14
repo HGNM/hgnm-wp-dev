@@ -8,6 +8,7 @@ for dependency in "${dependencies[@]}"; do
  command -v $dependency >/dev/null 2>&1 || { echo >&2 "‘$dependency’ command is required but it’s not installed. Aborting."; exit 1; }
 done
 
+__DIRNAME="hgnm-wp-dev"
 WP_DIR="app/public"
 
 ######################
@@ -22,5 +23,12 @@ THEME_LOCAL_DIR="$WP_DIR/wp-content/themes/hgnm-2014"
 print_color "Cloning hgnm-2014 WordPress theme..."
 git clone $THEME_REMOTE_URL $THEME_LOCAL_DIR
 
+#########################
+# COPY SCRIPT TWO TO VM #
+#########################
+
+cp $__DIRNAME/two app/two
+cp $__DIRNAME/hgnm-export.xml app/hgnm-export.xml
+
 print_color "Step 1 finished."
-echo "Return to Local, open site SSH, and run ./hgnm-wp-dev/two"
+echo "Return to Local, open site SSH, and run ./app/two"

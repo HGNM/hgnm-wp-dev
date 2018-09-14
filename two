@@ -13,7 +13,6 @@ done
 # PLUGIN INSTALLATION & ACTIVATION #
 ####################################
 
-__DIRNAME="hgnm-wp-dev"
 WP_DIR="app/public"
 
 # Advanced Custom Fields Pro
@@ -57,7 +56,7 @@ print_color "Deleting generic WordPress content..."
 wp post delete 1 --force --allow-root # Delete ‘Hello world!’ post
 wp post delete 2 --force --allow-root # Delete sample page
 # Import exported XML from hgnm.org
-HGNM_CONTENT="$__DIRNAME/hgnm-export.xml"
+HGNM_CONTENT="app/hgnm-export.xml"
 print_color "Importing hgnm.org content..."
 if [[ -f $HGNM_CONTENT ]]; then
   wp import $HGNM_CONTENT --authors=create --allow-root
