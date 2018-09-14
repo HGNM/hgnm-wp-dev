@@ -64,3 +64,5 @@ else
   echo "Can’t find file: $HGNM_CONTENT. Fatal error…"
   exit 1
 fi
+
+print_color "Finished set-up! You can now close this window."
