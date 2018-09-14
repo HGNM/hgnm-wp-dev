@@ -65,4 +65,7 @@ else
   exit 1
 fi
 
+# Set permalink structure to refresh redirects
+wp option update permalink_structure /%postname%/ --allow-root
+
 print_color "Finished set-up! You can now close this window."
